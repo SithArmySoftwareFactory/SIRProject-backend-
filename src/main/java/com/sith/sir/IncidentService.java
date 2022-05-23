@@ -31,34 +31,25 @@ public class IncidentService {
         if (incidentRepository.existsById(id)) {
 
             Incident updatingIncident = incidentRepository.findIncidentById(id);
-
             //need to add logic for patch
             updatingIncident.setDate(incident.getDate());
             updatingIncident.setTime(incident.getTime());
-
             updatingIncident.setCommand(incident.getCommand());
-
             updatingIncident.setEffects(incident.getEffects());
-
             updatingIncident.setEventType(incident.getEventType());
             updatingIncident.setHarm(incident.getHarm());
-
             updatingIncident.setLocation(incident.getLocation());
-
             updatingIncident.setPatientName(incident.getPatientName());
             updatingIncident.setPatientAddress(incident.getPatientAddress());
             updatingIncident.setPatientSSN(incident.getPatientSSN());
             updatingIncident.setPatientPhone(incident.getPatientPhone());
-
             updatingIncident.setIndividuals(incident.getIndividuals());
-
             updatingIncident.setWitness1Name(incident.getWitness1Name());
             updatingIncident.setWitness1Phone(incident.getWitness1Phone());
             updatingIncident.setWitness2Name(incident.getWitness2Name());
             updatingIncident.setWitness2Phone(incident.getWitness2Phone());
             updatingIncident.setWitness3Name(incident.getWitness3Name());
             updatingIncident.setWitness3Phone(incident.getWitness3Phone());
-
             updatingIncident.setDepartment(incident.getDepartment());
             updatingIncident.setDescription(incident.getDescription());
             updatingIncident.setPrevention(incident.getPrevention());

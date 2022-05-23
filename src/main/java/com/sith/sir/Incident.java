@@ -21,19 +21,12 @@ public class Incident {
 
     @JsonFormat(pattern = "HH:mm")
     private LocalTime time;
-
     private String location;
-
     private String eventType;
-
     private Boolean harm;
-
     private Boolean effects;
-
     private String patientSSN;
-
     private String patientPhone;
-
     private String patientAddress;
     private String patientName;
     private String witness1Name;
@@ -48,7 +41,10 @@ public class Incident {
     private String individuals;
     private String command;
 
-    public Incident(Long id, LocalDate date, LocalTime time, String location, String eventType, Boolean harm, Boolean effects, String patientSSN, String patientPhone, String patientAddress, String patientName, String witness1Name, String witness1Phone, String witness2Name, String witness2Phone, String witness3Name, String witness3Phone, String department, String description, String prevention, String individuals, String command) {
+    public Incident(Long id, LocalDate date, LocalTime time, String location, String eventType, Boolean harm, Boolean effects,
+                    String patientSSN, String patientPhone, String patientAddress, String patientName, String witness1Name, String witness1Phone,
+                    String witness2Name, String witness2Phone, String witness3Name, String witness3Phone, String department, String description,
+                    String prevention, String individuals, String command) {
         this.id = id;
         this.date = date;
         this.time = time;
