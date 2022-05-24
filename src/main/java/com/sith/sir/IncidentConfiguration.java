@@ -11,7 +11,7 @@ import java.time.Month;
 
 @Configuration
 public class IncidentConfiguration {
-    private IncidentRepository ir;
+    private IncidentRepository incidentRepository;
 
     @Bean
     CommandLineRunner commandLineRunnerIncident(IncidentRepository ir) {
@@ -23,6 +23,7 @@ public class IncidentConfiguration {
                     time,
                     "Barracks BLDG 6910",
                     "Actual Event/Incident",
+                    "Medical",
                     true,
                     true,
                     "777-99-8888",

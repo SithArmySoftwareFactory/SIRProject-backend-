@@ -11,24 +11,24 @@ import java.util.Optional;
 @AllArgsConstructor
 public class IncidentController {
 
-    private final IncidentService iS;
+    private final IncidentService incidentService;
 
     @GetMapping("/api/incident")
     public List<Incident> returnAllIncidents(
             @RequestParam(required = false) String sort,
             @RequestParam(required = false) String filter
     ) {
-        return iS.getAllIncidents(sort, filter);
+        return incidentService.getAllIncidents(sort, filter);
     }
 
     @PostMapping("/api/incident")
-    public Incident createASingleIncidentWithPost(@RequestBody Incident incident) {
-        return iS.createASingleIncident(incident);
+    public String createASingleIncidentWithPost(@RequestBody Incident incident) {
+        return incidentService.createASingleIncident(incident);
     }
 
     @GetMapping("/api/incident/{id}")
     public Optional<Incident> getASingleIncidentById(@PathVariable Long id) {
-        return iS.getASingleIncident(id);
+        return incidentService.getASingleIncident(id);
     }
 
     @PatchMapping("/api/incident/{id}")
@@ -36,12 +36,12 @@ public class IncidentController {
             @PathVariable Long id,
             @RequestBody Incident incident
     ) {
-        return iS.patchASingleIncident(id, incident);
+        return incidentService.patchASingleIncident(id, incident);
     }
 
     @DeleteMapping("/api/incident/{id}")
     public String deleteASingleIncidentById(@PathVariable Long id) {
-        return iS.deleteASingleIncident(id);
+        return incidentService.deleteASingleIncident(id);
     }
 }
 

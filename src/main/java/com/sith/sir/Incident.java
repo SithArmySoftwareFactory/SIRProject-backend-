@@ -9,7 +9,6 @@ import java.time.LocalTime;
 
 @Entity
 @Table
-
 public class Incident {
 
     @Id
@@ -23,6 +22,7 @@ public class Incident {
     private LocalTime time;
     private String location;
     private String eventType;
+    private String incidentType;
     private Boolean harm;
     private Boolean effects;
     private String patientSSN;
@@ -41,15 +41,13 @@ public class Incident {
     private String individuals;
     private String command;
 
-    public Incident(Long id, LocalDate date, LocalTime time, String location, String eventType, Boolean harm, Boolean effects,
-                    String patientSSN, String patientPhone, String patientAddress, String patientName, String witness1Name, String witness1Phone,
-                    String witness2Name, String witness2Phone, String witness3Name, String witness3Phone, String department, String description,
-                    String prevention, String individuals, String command) {
+    public Incident(Long id, LocalDate date, LocalTime time, String location, String eventType, String incidentType, Boolean harm, Boolean effects, String patientSSN, String patientPhone, String patientAddress, String patientName, String witness1Name, String witness1Phone, String witness2Name, String witness2Phone, String witness3Name, String witness3Phone, String department, String description, String prevention, String individuals, String command) {
         this.id = id;
         this.date = date;
         this.time = time;
         this.location = location;
         this.eventType = eventType;
+        this.incidentType = incidentType;
         this.harm = harm;
         this.effects = effects;
         this.patientSSN = patientSSN;
@@ -69,11 +67,12 @@ public class Incident {
         this.command = command;
     }
 
-    public Incident(LocalDate date, LocalTime time, String location, String eventType, Boolean harm, Boolean effects, String patientSSN, String patientPhone, String patientAddress, String patientName, String witness1Name, String witness1Phone, String witness2Name, String witness2Phone, String witness3Name, String witness3Phone, String department, String description, String prevention, String individuals, String command) {
+    public Incident(LocalDate date, LocalTime time, String location, String eventType, String incidentType, Boolean harm, Boolean effects, String patientSSN, String patientPhone, String patientAddress, String patientName, String witness1Name, String witness1Phone, String witness2Name, String witness2Phone, String witness3Name, String witness3Phone, String department, String description, String prevention, String individuals, String command) {
         this.date = date;
         this.time = time;
         this.location = location;
         this.eventType = eventType;
+        this.incidentType = incidentType;
         this.harm = harm;
         this.effects = effects;
         this.patientSSN = patientSSN;
@@ -270,5 +269,13 @@ public class Incident {
 
     public void setCommand(String command) {
         this.command = command;
+    }
+
+    public String getIncidentType() {
+        return incidentType;
+    }
+
+    public void setIncidentType(String incidentType) {
+        this.incidentType = incidentType;
     }
 }
