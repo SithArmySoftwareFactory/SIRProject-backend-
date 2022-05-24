@@ -15,7 +15,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
     ResponseEntity<Object> handleConflict(RuntimeException exception, WebRequest request) {
         return handleExceptionInternal(
                 exception,
-                "Data error code: 03x03499fa. Please contact a System Administrator",
+                "Error:" + exception,
                 new HttpHeaders(),
                 HttpStatus.OK,
                 request);

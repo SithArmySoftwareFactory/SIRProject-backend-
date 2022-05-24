@@ -14,8 +14,10 @@ public class IncidentService {
     private final IncidentRepository incidentRepository;
 
 
-    public Incident createASingleIncident(Incident incident) {
-        return incidentRepository.save(incident);
+    public String createASingleIncident(Incident incident) {
+        if(incident == null) return null;
+        incidentRepository.save(incident);
+        return "Incident saved.";
     }
 
     public Optional<Incident> getASingleIncident(Long id) {
@@ -37,6 +39,7 @@ public class IncidentService {
             updatingIncident.setCommand(incident.getCommand());
             updatingIncident.setEffects(incident.getEffects());
             updatingIncident.setEventType(incident.getEventType());
+            updatingIncident.setIncidentType(incident.getIncidentType());
             updatingIncident.setHarm(incident.getHarm());
             updatingIncident.setLocation(incident.getLocation());
             updatingIncident.setPatientName(incident.getPatientName());

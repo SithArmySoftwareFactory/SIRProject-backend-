@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-
 public interface IncidentRepository extends JpaRepository<Incident, Long> {
 
     Incident findIncidentById(Long id);
