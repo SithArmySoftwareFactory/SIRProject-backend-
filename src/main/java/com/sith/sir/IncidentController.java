@@ -9,6 +9,7 @@ import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
+@CrossOrigin("*")
 public class IncidentController {
 
     private final IncidentService incidentService;
