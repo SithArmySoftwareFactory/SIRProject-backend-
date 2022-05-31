@@ -21,9 +21,10 @@ public class Incident {
     @JsonFormat(pattern = "HH:mm")
     private LocalTime time;
     private String location;
-    private String eventType;
     private String incidentType;
     private Boolean harm;
+    private String individuals;
+    private String eventType;
     private Boolean effects;
     private String patientSSN;
     private String patientPhone;
@@ -38,17 +39,17 @@ public class Incident {
     private String department;
     private String description;
     private String prevention;
-    private String individuals;
     private String command;
 
-    public Incident(Long id, LocalDate date, LocalTime time, String location, String eventType, String incidentType, Boolean harm, Boolean effects, String patientSSN, String patientPhone, String patientAddress, String patientName, String witness1Name, String witness1Phone, String witness2Name, String witness2Phone, String witness3Name, String witness3Phone, String department, String description, String prevention, String individuals, String command) {
+    public Incident(Long id, LocalDate date, LocalTime time, String location, String incidentType, Boolean harm, String individuals, String eventType, Boolean effects, String patientSSN, String patientPhone, String patientAddress, String patientName, String witness1Name, String witness1Phone, String witness2Name, String witness2Phone, String witness3Name, String witness3Phone, String department, String description, String prevention, String command) {
         this.id = id;
         this.date = date;
         this.time = time;
         this.location = location;
-        this.eventType = eventType;
         this.incidentType = incidentType;
         this.harm = harm;
+        this.individuals = individuals;
+        this.eventType = eventType;
         this.effects = effects;
         this.patientSSN = patientSSN;
         this.patientPhone = patientPhone;
@@ -63,17 +64,17 @@ public class Incident {
         this.department = department;
         this.description = description;
         this.prevention = prevention;
-        this.individuals = individuals;
         this.command = command;
     }
 
-    public Incident(LocalDate date, LocalTime time, String location, String eventType, String incidentType, Boolean harm, Boolean effects, String patientSSN, String patientPhone, String patientAddress, String patientName, String witness1Name, String witness1Phone, String witness2Name, String witness2Phone, String witness3Name, String witness3Phone, String department, String description, String prevention, String individuals, String command) {
+    public Incident(LocalDate date, LocalTime time, String location, String incidentType, Boolean harm, String individuals, String eventType, Boolean effects, String patientSSN, String patientPhone, String patientAddress, String patientName, String witness1Name, String witness1Phone, String witness2Name, String witness2Phone, String witness3Name, String witness3Phone, String department, String description, String prevention, String command) {
         this.date = date;
         this.time = time;
         this.location = location;
-        this.eventType = eventType;
         this.incidentType = incidentType;
         this.harm = harm;
+        this.individuals = individuals;
+        this.eventType = eventType;
         this.effects = effects;
         this.patientSSN = patientSSN;
         this.patientPhone = patientPhone;
@@ -88,7 +89,6 @@ public class Incident {
         this.department = department;
         this.description = description;
         this.prevention = prevention;
-        this.individuals = individuals;
         this.command = command;
     }
 
