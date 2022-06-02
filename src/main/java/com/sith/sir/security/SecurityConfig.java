@@ -18,7 +18,9 @@ import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.http.HttpMethod.POST;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
-@Configuration @EnableWebSecurity @RequiredArgsConstructor
+@Configuration
+@EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final UserDetailsService userDetailsService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -34,12 +36,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         customAuthenticationFilter.setFilterProcessesUrl("/api/login");
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(STATELESS);
-        http.authorizeRequests().antMatchers("/api/login/**", "/api/token/refresh/**").permitAll()
-                .and()
-                .formLogin();
+        http.authorizeRequests().antMatchers("/api/login/**", "/api/token/refresh/**").permitAll();
+
         http.authorizeRequests().antMatchers(GET, "/api/user/**").hasAnyAuthority("ROLE_USER");
         http.authorizeRequests().antMatchers(POST, "/api/user/save/**").hasAnyAuthority("ROLE_ADMIN");
-        http.authorizeRequests().anyRequest().authenticated();
+        http.authorizeRequests().anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginProcessingUrl("/perform_login")
+                .defaultSuccessUrl("https://development.d3n0s85mgrepc0.amplifyapp.com/", true)
+                //.defaultSuccessUrl("http://localhost:8080users/api/", true)
+                ;
         http.addFilter(customAuthenticationFilter);
         http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
