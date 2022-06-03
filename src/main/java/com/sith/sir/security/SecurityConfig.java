@@ -45,7 +45,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginProcessingUrl("/perform_login")
                 .defaultSuccessUrl("https://development.d3n0s85mgrepc0.amplifyapp.com/", true)
-                //.defaultSuccessUrl("http://localhost:8080users/api/", true)
                 ;
         http.addFilter(customAuthenticationFilter);
         http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);

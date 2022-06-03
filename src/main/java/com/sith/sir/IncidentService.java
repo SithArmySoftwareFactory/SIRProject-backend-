@@ -2,6 +2,9 @@ package com.sith.sir;
 
 import com.sith.sir.exceptions.ApiException;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,10 +16,18 @@ public class IncidentService {
 
     private final IncidentRepository incidentRepository;
 
+    @Autowired
+    private EmailSenderService senderService;
+
+    @EventListener(ApplicationReadyEvent.class)
+    public void sendMail(Incident incident){
+        senderService.sendEmail("bruceblack88@gmail.com", String.format("Incident %s %s", incident.getDate(), incident.getTime()), String.valueOf(incident));
+    }
 
     public String createASingleIncident(Incident incident) {
         if(incident == null) return null;
         incidentRepository.save(incident);
+        sendMail(incident);
         return "Incident saved.";
     }
 
