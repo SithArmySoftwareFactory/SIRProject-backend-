@@ -105,6 +105,9 @@ public class IncidentService {
             if(incident.getLng() != null)
             updatingIncident.setLng(incident.getLng());
 
+            if(incident.getSentiment() != null)
+                updatingIncident.setSentiment(incident.getSentiment());
+
 
             incidentRepository.save(updatingIncident);
 
