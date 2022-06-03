@@ -2,11 +2,14 @@ package com.sith.sir;
 
 import com.sith.sir.exceptions.ApiException;
 import lombok.AllArgsConstructor;
+import org.apache.logging.log4j.message.MapMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,16 +22,23 @@ public class IncidentService {
     @Autowired
     private EmailSenderService senderService;
 
-    @EventListener(ApplicationReadyEvent.class)
-    public void sendMail(Incident incident){
-        senderService.sendEmail("bruceblack88@gmail.com", String.format("Incident %s %s", incident.getDate(), incident.getTime()), String.valueOf(incident));
+
+    public void sendMail(Incident incident) {
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        senderService.sendEmail("bruceblack88@gmail.com", String.format("New Incident %s" , formatter.format(date)) ,String.format("%s", incident.getDescription()));
+
     }
 
+
     public String createASingleIncident(Incident incident) {
-        if(incident == null) return null;
-        incidentRepository.save(incident);
-        sendMail(incident);
-        return "Incident saved.";
+        if(incident == null) {
+            return null;
+        } else {
+            incidentRepository.save(incident);
+            sendMail(incident);
+            return "Incident saved.";
+        }
     }
 
     public Optional<Incident> getASingleIncident(Long id) {
