@@ -23,7 +23,7 @@ public class IncidentController {
     }
 
     @PostMapping("/api/incident")
-    public String createASingleIncidentWithPost(@RequestBody Incident incident) {
+    public Incident createASingleIncidentWithPost(@RequestBody Incident incident) {
         return incidentService.createASingleIncident(incident);
     }
 
