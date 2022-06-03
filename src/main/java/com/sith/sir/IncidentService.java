@@ -27,21 +27,22 @@ public class IncidentService {
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         senderService.sendEmail("lance.c.redfearn.mil@swf.army.mil", String.format("New Incident %s %s" , formatter.format(date), incident.getDescription()) ,
-                String.format(
-                        "Location of Event: %s\n" +
-                        "Event Type: %s\n" +
-                        "Harm or Potential Harm: %s\n" +
-                        "Individuals Involved: %s\n" +
-                        "Type of Event: %s\n" +
-                        "Effect: %s\n" +
-                        "Witness Name: %s\n" +
-                        "Witness Phone: %s\n" +
-                        "Departments: %s\n" +
-                        "Description: %s\n" +
-                        "Actions Taken: %s\n" +
-                        "Patient Name: %s\n" +
-                        "Patient SSN: \n" +
-                        "Patient Phone: %s\n" +
+                String.format("Sir/Ma'am,\n\n"+
+                        "Below is the information for a new incident. Please log into the SIR portal to review.\n\n"+
+                        "Location of Event: %s\n\n" +
+                        "Event Type: %s\n\n" +
+                        "Harm or Potential Harm: %s\n\n" +
+                        "Individuals Involved: %s\n\n" +
+                        "Type of Event: %s\n\n" +
+                        "Harm Sustained: %s\n\n" +
+                        "Witness Name: %s\n\n" +
+                        "Witness Phone: %s\n\n" +
+                        "Departments: %s\n\n" +
+                        "Description: %s\n\n" +
+                        "Actions Taken: %s\n\n" +
+                        "Patient Name: %s\n\n" +
+                        "Patient SSN: \n\n" +
+                        "Patient Phone: %s\n\n" +
                         "Patient Address: %s",
                         incident.getLocation(),
                         incident.getEventType(),
@@ -59,7 +60,6 @@ public class IncidentService {
                         incident.getPatientPhone(),
                         incident.getPatientAddress(),
                         incident.getDescription()));
-
     }
 
 
