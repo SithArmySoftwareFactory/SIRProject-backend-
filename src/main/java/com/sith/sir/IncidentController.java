@@ -2,8 +2,12 @@ package com.sith.sir;
 
 
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.web.bind.annotation.*;
 
+import javax.management.Notification;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,6 +17,7 @@ import java.util.Optional;
 public class IncidentController {
 
     private final IncidentService incidentService;
+
 
     @GetMapping("/api/incident")
     public List<Incident> returnAllIncidents(

@@ -2,8 +2,14 @@ package com.sith.sir;
 
 import com.sith.sir.exceptions.ApiException;
 import lombok.AllArgsConstructor;
+import org.apache.logging.log4j.message.MapMessage;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,10 +19,59 @@ public class IncidentService {
 
     private final IncidentRepository incidentRepository;
 
+    @Autowired
+    private EmailSenderService senderService;
 
-    public Incident createASingleIncident(Incident incident) {
-        if(incident == null) return null;
-       return  incidentRepository.save(incident);
+
+    public void sendMail(Incident incident) {
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        senderService.sendEmail("lance.c.redfearn.mil@swf.army.mil", String.format("New Incident %s %s" , formatter.format(date), incident.getDescription()) ,
+                String.format("Sir/Ma'am,\n\n"+
+                        "Below is the information for a new incident. Please log into the SIR portal to review.\n\n"+
+                        "Location of Event: %s\n\n" +
+                        "Event Type: %s\n\n" +
+                        "Harm or Potential Harm: %s\n\n" +
+                        "Individuals Involved: %s\n\n" +
+                        "Type of Event: %s\n\n" +
+                        "Harm Sustained: %s\n\n" +
+                        "Witness Name: %s\n\n" +
+                        "Witness Phone: %s\n\n" +
+                        "Departments: %s\n\n" +
+                        "Description: %s\n\n" +
+                        "Actions Taken: %s\n\n" +
+                        "Patient Name: %s\n\n" +
+                        "Patient SSN: \n\n" +
+                        "Patient Phone: %s\n\n" +
+                        "Patient Address: %s",
+                        incident.getLocation(),
+                        incident.getEventType(),
+                        incident.getHarm(),
+                        incident.getIndividuals(),
+                        incident.getIncidentType(),
+                        incident.getEffects(),
+                        incident.getWitness1Name(),
+                        incident.getWitness1Phone(),
+                        incident.getDepartment(),
+                        incident.getDescription(),
+                        incident.getPrevention(),
+                        incident.getPatientName(),
+                        incident.getPatientSSN(),
+                        incident.getPatientPhone(),
+                        incident.getPatientAddress(),
+                        incident.getDescription()));
+    }
+
+
+
+    public String createASingleIncident(Incident incident) {
+        if(incident == null) {
+            return null;
+        } else {
+            incidentRepository.save(incident);
+            sendMail(incident);
+            return "Incident saved.";
+        }
     }
 
     public Optional<Incident> getASingleIncident(Long id) {
