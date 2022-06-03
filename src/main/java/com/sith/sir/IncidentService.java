@@ -26,7 +26,39 @@ public class IncidentService {
     public void sendMail(Incident incident) {
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-        senderService.sendEmail("bruceblack88@gmail.com", String.format("New Incident %s" , formatter.format(date)) ,String.format("%s", incident.getDescription()));
+        senderService.sendEmail("bruceblack88@gmail.com", String.format("New Incident %s %s" , formatter.format(date), incident.getDescription()) ,
+                String.format(
+                        "Location of Event: %s\n" +
+                        "Event Type: %s\n" +
+                        "Harm or Potential Harm: %s\n" +
+                        "Individuals Involved: %s\n" +
+                        "Type of Event: %s\n" +
+                        "Effect: %s\n" +
+                        "Witness Name: %s\n" +
+                        "Witness Phone: %s\n" +
+                        "Departments: %s\n" +
+                        "Description: %s\n" +
+                        "Actions Taken: %s\n" +
+                        "Patient Name: %s\n" +
+                        "Patient SSN: \n" +
+                        "Patient Phone: %s\n" +
+                        "Patient Address: %s",
+                        incident.getLocation(),
+                        incident.getEventType(),
+                        incident.getHarm(),
+                        incident.getIndividuals(),
+                        incident.getIncidentType(),
+                        incident.getEffects(),
+                        incident.getWitness1Name(),
+                        incident.getWitness1Phone(),
+                        incident.getDepartment(),
+                        incident.getDescription(),
+                        incident.getPrevention(),
+                        incident.getPatientName(),
+                        incident.getPatientSSN(),
+                        incident.getPatientPhone(),
+                        incident.getPatientAddress(),
+                        incident.getDescription()));
 
     }
 
