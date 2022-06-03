@@ -40,8 +40,10 @@ public class Incident {
     private String description;
     private String prevention;
     private String command;
+    private Double lat;
+    private Double lng;
 
-    public Incident(Long id, LocalDate date, LocalTime time, String location, String incidentType, Boolean harm, String individuals, String eventType, Boolean effects, String patientSSN, String patientPhone, String patientAddress, String patientName, String witness1Name, String witness1Phone, String witness2Name, String witness2Phone, String witness3Name, String witness3Phone, String department, String description, String prevention, String command) {
+    public Incident(Long id, LocalDate date, LocalTime time, String location, String incidentType, Boolean harm, String individuals, String eventType, Boolean effects, String patientSSN, String patientPhone, String patientAddress, String patientName, String witness1Name, String witness1Phone, String witness2Name, String witness2Phone, String witness3Name, String witness3Phone, String department, String description, String prevention, String command, Double lat, Double lng) {
         this.id = id;
         this.date = date;
         this.time = time;
@@ -65,6 +67,35 @@ public class Incident {
         this.description = description;
         this.prevention = prevention;
         this.command = command;
+        this.lat = lat;
+        this.lng = lng;
+    }
+
+    public Incident(LocalDate date, LocalTime time, String location, String incidentType, Boolean harm, String individuals, String eventType, Boolean effects, String patientSSN, String patientPhone, String patientAddress, String patientName, String witness1Name, String witness1Phone, String witness2Name, String witness2Phone, String witness3Name, String witness3Phone, String department, String description, String prevention, String command, Double lat, Double lng) {
+        this.date = date;
+        this.time = time;
+        this.location = location;
+        this.incidentType = incidentType;
+        this.harm = harm;
+        this.individuals = individuals;
+        this.eventType = eventType;
+        this.effects = effects;
+        this.patientSSN = patientSSN;
+        this.patientPhone = patientPhone;
+        this.patientAddress = patientAddress;
+        this.patientName = patientName;
+        this.witness1Name = witness1Name;
+        this.witness1Phone = witness1Phone;
+        this.witness2Name = witness2Name;
+        this.witness2Phone = witness2Phone;
+        this.witness3Name = witness3Name;
+        this.witness3Phone = witness3Phone;
+        this.department = department;
+        this.description = description;
+        this.prevention = prevention;
+        this.command = command;
+        this.lat = lat;
+        this.lng = lng;
     }
 
     public Incident(LocalDate date, LocalTime time, String location, String incidentType, Boolean harm, String individuals, String eventType, Boolean effects, String patientSSN, String patientPhone, String patientAddress, String patientName, String witness1Name, String witness1Phone, String witness2Name, String witness2Phone, String witness3Name, String witness3Phone, String department, String description, String prevention, String command) {
@@ -93,6 +124,22 @@ public class Incident {
     }
 
     public Incident() {
+    }
+
+    public Double getLat() {
+        return lat;
+    }
+
+    public void setLat(Double lat) {
+        this.lat = lat;
+    }
+
+    public Double getLng() {
+        return lng;
+    }
+
+    public void setLng(Double lng) {
+        this.lng = lng;
     }
 
     public Long getId() {
