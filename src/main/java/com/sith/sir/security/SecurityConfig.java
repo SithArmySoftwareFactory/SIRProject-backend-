@@ -1,7 +1,10 @@
 package com.sith.sir.security;
 
+import com.sith.sir.domain.AppUser;
+import com.sith.sir.domain.Role;
 import com.sith.sir.filter.CustomAuthenticationFilter;
 import com.sith.sir.filter.CustomAuthorizationFilter;
+import com.sith.sir.service.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -39,13 +42,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/api/login/**", "/api/token/refresh/**", "/api/incident/**", "/api/send/**").permitAll();
 
         http.authorizeRequests().antMatchers(GET, "/api/user/**").hasAnyAuthority("ROLE_USER");
-        http.authorizeRequests().antMatchers(POST, "/api/user/save/**").hasAnyAuthority("ROLE_ADMIN");
+        http.authorizeRequests().antMatchers(POST, "/api/user/save/**", "http://localhost:3000/supervisor").hasAnyAuthority("ROLE_ADMIN");
         http.authorizeRequests().anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginProcessingUrl("/perform_login")
-                .defaultSuccessUrl("https://development.d3n0s85mgrepc0.amplifyapp.com/", true)
-                ;
+                .defaultSuccessUrl("http://localhost:3000/report", true);
         http.addFilter(customAuthenticationFilter);
         http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
     }

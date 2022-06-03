@@ -47,9 +47,9 @@ public class SirApplication {
             userService.saveUser(new AppUser(null, "Sydney Fink", "sydney", "1234", new ArrayList<>()));
 
             userService.addRoleToAppUser("bruce", "ROLE_USER");
-            userService.addRoleToAppUser("bruce", "ROLE_MANAGER");
-            userService.addRoleToAppUser("bruce", "ROLE_ADMIN");
-            userService.addRoleToAppUser("bruce", "ROLE_SUPER_ADMIN");
+//            userService.addRoleToAppUser("bruce", "ROLE_MANAGER");
+//            userService.addRoleToAppUser("bruce", "ROLE_ADMIN");
+//            userService.addRoleToAppUser("bruce", "ROLE_SUPER_ADMIN");
             userService.addRoleToAppUser("dakota", "ROLE_MANAGER");
             userService.addRoleToAppUser("lance", "ROLE_ADMIN");
             userService.addRoleToAppUser("josh", "ROLE_SUPER_ADMIN");
