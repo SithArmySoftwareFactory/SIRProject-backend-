@@ -26,7 +26,7 @@ public class IncidentService {
     public void sendMail(Incident incident) {
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-        senderService.sendEmail("lance.c.redfearn.mil@swf.army.mil", String.format("New Incident %s %s" , formatter.format(date), incident.getDescription()) ,
+        senderService.sendEmail("bruceblack88@gmail.com", String.format("**New Incident** %s %s" , formatter.format(date), incident.getDescription()) ,
                 String.format("Sir/Ma'am,\n\n"+
                         "Below is the information for a new incident. Please log into the SIR portal to review.\n\n"+
                         "Location of Event: %s\n\n" +
@@ -63,14 +63,21 @@ public class IncidentService {
     }
 
 
+    public String sendToCommandService(){
 
-    public String createASingleIncident(Incident incident) {
+        senderService.sendEmail("bruceblack88@gmail.com","**New Incidents To Review**",
+                String.format("Sir/Ma'am,\n\n You have Incidents to review. Please log into the SRI portal to review.")
+                );
+        return "Sent to commander";
+    }
+
+    public Incident createASingleIncident(Incident incident) {
         if(incident == null) {
             return null;
         } else {
             incidentRepository.save(incident);
             sendMail(incident);
-            return "Incident saved.";
+            return incident;
         }
     }
 

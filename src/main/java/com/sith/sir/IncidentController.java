@@ -32,6 +32,14 @@ public class IncidentController {
         return incidentService.createASingleIncident(incident);
     }
 
+    @PostMapping("/api/send")
+    public String sendToCommand(){
+
+        incidentService.sendToCommandService();
+        return "Sent to commander.";
+    }
+
+
     @GetMapping("/api/incident/{id}")
     public Optional<Incident> getASingleIncidentById(@PathVariable Long id) {
         return incidentService.getASingleIncident(id);
