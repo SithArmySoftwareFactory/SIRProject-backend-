@@ -29,6 +29,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @Import(SecurityConfig.class)
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UserController {
     private final UserService userService;
 
