@@ -19,16 +19,22 @@ import java.util.ArrayList;
 
 @SpringBootApplication
 public class SirApplication {
+
+
+
+
 //    @Autowired
 //    private EmailSenderService senderService;
 //    @EventListener(ApplicationReadyEvent.class)
 ////    public void sendMail(){
 ////       senderService.sendEmail("bruceblack88@gmail.com", "This is a test", "This is body");
 ////    }
+
     public static void main(String[] args) {
         SpringApplication.run(SirApplication.class, args);
-
     }
+  
+  //this fixed the CORs issue
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
@@ -70,3 +76,5 @@ public class SirApplication {
         };
     }
 }
+
+
