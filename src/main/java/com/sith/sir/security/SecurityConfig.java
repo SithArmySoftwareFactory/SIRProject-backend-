@@ -39,15 +39,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         customAuthenticationFilter.setFilterProcessesUrl("/api/login");
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(STATELESS);
-        http.authorizeRequests().antMatchers("/api/login/**", "/api/token/refresh/**", "/api/incident/**", "/api/send/**").permitAll();
-
-        http.authorizeRequests().antMatchers(GET, "/api/user/**").hasAnyAuthority("ROLE_USER");
-        http.authorizeRequests().antMatchers(POST, "/api/user/save/**", "http://localhost:3000/supervisor").hasAnyAuthority("ROLE_ADMIN");
-        http.authorizeRequests().anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .loginProcessingUrl("/perform_login")
-                .defaultSuccessUrl("http://localhost:3000/report", true);
+        http.authorizeRequests()
+                .antMatchers(
+                        "/api/login/**",
+                        "/api/token/refresh/**",
+                        "/api/send/**")
+                .permitAll();
+        http.authorizeRequests()     .antMatchers(GET, "/api/users/**").hasAnyAuthority("ROLE_SUPER_ADMIN", "ROLE_ADMIN");
+        http.authorizeRequests()     .antMatchers(GET, "/api/incident/**").hasAnyAuthority("ROLE_SUPER_ADMIN");
+        http.authorizeRequests()    .antMatchers(POST, "/api/user/save/**", "http://localhost:3000/supervisor")
+                .hasAnyAuthority("ROLE_ADMIN").anyRequest().authenticated();
         http.addFilter(customAuthenticationFilter);
         http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
     }

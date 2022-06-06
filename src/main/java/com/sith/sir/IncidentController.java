@@ -1,24 +1,25 @@
 package com.sith.sir;
 
 
+import com.sith.sir.security.SecurityConfig;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.event.EventListener;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
 import javax.management.Notification;
 import java.util.List;
 import java.util.Optional;
-
+@Import(SecurityConfig.class)
 @RestController
 @AllArgsConstructor
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class IncidentController {
 
     private final IncidentService incidentService;
-
-
     @GetMapping("/api/incident")
     public List<Incident> returnAllIncidents(
             @RequestParam(required = false) String sort,
