@@ -33,38 +33,6 @@ public class SirApplication {
 
 
     }
-
-    @Bean
-    PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-   @Bean
-   CommandLineRunner run(UserService userService){
-        return arg ->{
-            userService.saveRole(new Role(null, "ROLE_USER"));
-            userService.saveRole(new Role(null, "ROLE_MANAGER"));
-            userService.saveRole(new Role(null, "ROLE_ADMIN"));
-            userService.saveRole(new Role(null, "ROLE_SUPER_ADMIN"));
-
-            userService.saveUser(new AppUser(null, "Bruce Black", "bruce", "1234", new ArrayList<>()));
-            userService.saveUser(new AppUser(null, "Dakota Slay", "dakota", "1234", new ArrayList<>()));
-            userService.saveUser(new AppUser(null, "Lance Redfearn", "lance", "1234", new ArrayList<>()));
-            userService.saveUser(new AppUser(null, "Josh Matos", "josh", "1234", new ArrayList<>()));
-            userService.saveUser(new AppUser(null, "Sydney Fink", "sydney", "1234", new ArrayList<>()));
-
-            userService.addRoleToAppUser("bruce", "ROLE_USER");
-            userService.addRoleToAppUser("bruce", "ROLE_MANAGER");
-            userService.addRoleToAppUser("bruce", "ROLE_ADMIN");
-            userService.addRoleToAppUser("bruce", "ROLE_SUPER_ADMIN");
-            userService.addRoleToAppUser("dakota", "ROLE_MANAGER");
-            userService.addRoleToAppUser("lance", "ROLE_ADMIN");
-            userService.addRoleToAppUser("josh", "ROLE_SUPER_ADMIN");
-            userService.addRoleToAppUser("sydney", "ROLE_SUPER_ADMIN");
-
-
-        };
-    }
 }
 
 

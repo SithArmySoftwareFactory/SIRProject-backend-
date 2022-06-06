@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Random;
 
 @Entity
 @Table
@@ -102,6 +103,13 @@ public class Incident {
     }
 
     public Incident(LocalDate date, LocalTime time, String location, String incidentType, Boolean harm, String individuals, String eventType, Boolean effects, String patientSSN, String patientPhone, String patientAddress, String patientName, String witness1Name, String witness1Phone, String witness2Name, String witness2Phone, String witness3Name, String witness3Phone, String department, String description, String prevention, String command, Double lat, Double lng) {
+        //Move lat around for clustering on front end --- TODO put in function
+        Random rand = new Random();
+        String removeLastTwoDigits = lat + "";
+        String newLat = removeLastTwoDigits.substring(0, removeLastTwoDigits.length() - 2) + rand.nextInt(99);
+        String removeLastTwoDigits2 = lng + "";
+        String newLng = removeLastTwoDigits2.substring(0, removeLastTwoDigits2.length() - 2) + rand.nextInt(99);
+
         this.date = date;
         this.time = time;
         this.location = location;
@@ -124,8 +132,8 @@ public class Incident {
         this.description = description;
         this.prevention = prevention;
         this.command = command;
-        this.lat = lat;
-        this.lng = lng;
+        this.lat = Double.valueOf(newLat);
+        this.lng =  Double.valueOf(newLng);;
     }
 
     public Incident(LocalDate date, LocalTime time, String location, String incidentType, Boolean harm, String individuals, String eventType, Boolean effects, String patientSSN, String patientPhone, String patientAddress, String patientName, String witness1Name, String witness1Phone, String witness2Name, String witness2Phone, String witness3Name, String witness3Phone, String department, String description, String prevention, String command) {
@@ -169,7 +177,13 @@ public class Incident {
     }
 
     public void setLat(Double lat) {
-        this.lat = lat;
+        //Remove the last two numbers from the Lat
+        //Add two random numbers, helps frontend with clustering
+        Random rand = new Random();
+        String removeLastTwoDigits = lat + "";
+        String newLat = removeLastTwoDigits.substring(0, removeLastTwoDigits.length() - 2) + rand.nextInt(99);;
+        this.lat = Double.valueOf(newLat);
+
     }
 
     public Double getLng() {
