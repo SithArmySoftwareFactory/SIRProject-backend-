@@ -46,7 +46,6 @@ public class IncidentController {
 
     @PostMapping("/api/send")
     public String sendToCommand(){
-
         incidentService.sendToCommandService();
         return "Sent to commander.";
     }

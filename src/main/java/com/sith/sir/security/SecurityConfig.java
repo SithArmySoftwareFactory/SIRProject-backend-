@@ -51,7 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(
                         "/api/login/**",
                         "/api/token/refresh/**",
-                        "/api/send/**")
+                        "/api/send/**", "https://cors-everywhere.herokuapp.com/http://107.21.146.178/api/send/**")
                 .permitAll()
                 .antMatchers(GET, "/api/users/**")
                 .hasAnyAuthority("ROLE_SUPER_ADMIN", "ROLE_ADMIN")
