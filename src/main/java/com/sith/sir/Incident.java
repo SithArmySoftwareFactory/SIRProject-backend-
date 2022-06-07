@@ -75,6 +75,13 @@ public class Incident {
     }
 
     public Incident(LocalDate date, LocalTime time, String location, String incidentType, Boolean harm, String individuals, String eventType, Boolean effects, String patientSSN, String patientPhone, String patientAddress, String patientName, String witness1Name, String witness1Phone, String witness2Name, String witness2Phone, String witness3Name, String witness3Phone, String department, String description, String prevention, String command, Double lat, Double lng, String sentiment) {
+        //Move lat around for clustering on front end --- TODO put in function
+        Random rand = new Random();
+        String removeLastTwoDigits = lat + "";
+        String newLat = removeLastTwoDigits.substring(0, removeLastTwoDigits.length() - 3) + rand.nextInt(199);
+        String removeLastTwoDigits2 = lng + "";
+        String newLng = removeLastTwoDigits2.substring(0, removeLastTwoDigits2.length() - 2) + rand.nextInt(99);
+
         this.date = date;
         this.time = time;
         this.location = location;
@@ -97,8 +104,8 @@ public class Incident {
         this.description = description;
         this.prevention = prevention;
         this.command = command;
-        this.lat = lat;
-        this.lng = lng;
+        this.lat = Double.valueOf(newLat);
+        this.lng =  Double.valueOf(newLng);;
         this.sentiment = sentiment;
     }
 
@@ -106,7 +113,7 @@ public class Incident {
         //Move lat around for clustering on front end --- TODO put in function
         Random rand = new Random();
         String removeLastTwoDigits = lat + "";
-        String newLat = removeLastTwoDigits.substring(0, removeLastTwoDigits.length() - 2) + rand.nextInt(99);
+        String newLat = removeLastTwoDigits.substring(0, removeLastTwoDigits.length() - 3) + rand.nextInt(199);
         String removeLastTwoDigits2 = lng + "";
         String newLng = removeLastTwoDigits2.substring(0, removeLastTwoDigits2.length() - 2) + rand.nextInt(99);
 
@@ -181,7 +188,7 @@ public class Incident {
         //Add two random numbers, helps frontend with clustering
         Random rand = new Random();
         String removeLastTwoDigits = lat + "";
-        String newLat = removeLastTwoDigits.substring(0, removeLastTwoDigits.length() - 2) + rand.nextInt(99);;
+        String newLat = removeLastTwoDigits.substring(0, removeLastTwoDigits.length() - 3) + rand.nextInt(199);;
         this.lat = Double.valueOf(newLat);
 
     }
@@ -191,7 +198,10 @@ public class Incident {
     }
 
     public void setLng(Double lng) {
-        this.lng = lng;
+        Random rand = new Random();
+        String removeLastTwoDigits2 = lng + "";
+        String newLng = removeLastTwoDigits2.substring(0, removeLastTwoDigits2.length() - 3) + rand.nextInt(199);
+        this.lng = Double.valueOf(newLng);
     }
 
     public Long getId() {
