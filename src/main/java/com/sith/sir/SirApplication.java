@@ -12,6 +12,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.event.EventListener;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.ArrayList;
 
@@ -30,10 +32,18 @@ public class SirApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(SirApplication.class, args);
-
-
     }
-
+  
+  //this fixed the CORs issue
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/api/login").allowedOrigins("*");
+            }
+        };
+    }
     @Bean
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -54,9 +64,9 @@ public class SirApplication {
             userService.saveUser(new AppUser(null, "Sydney Fink", "sydney", "1234", new ArrayList<>()));
 
             userService.addRoleToAppUser("bruce", "ROLE_USER");
-            userService.addRoleToAppUser("bruce", "ROLE_MANAGER");
-            userService.addRoleToAppUser("bruce", "ROLE_ADMIN");
-            userService.addRoleToAppUser("bruce", "ROLE_SUPER_ADMIN");
+//            userService.addRoleToAppUser("bruce", "ROLE_MANAGER");
+//            userService.addRoleToAppUser("bruce", "ROLE_ADMIN");
+//            userService.addRoleToAppUser("bruce", "ROLE_SUPER_ADMIN");
             userService.addRoleToAppUser("dakota", "ROLE_MANAGER");
             userService.addRoleToAppUser("lance", "ROLE_ADMIN");
             userService.addRoleToAppUser("josh", "ROLE_SUPER_ADMIN");
