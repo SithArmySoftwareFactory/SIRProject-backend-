@@ -170,6 +170,8 @@ public class IncidentService {
             if(incident.getSentiment() != null)
                 updatingIncident.setSentiment(incident.getSentiment());
 
+            if(incident.getSentiment() != null)
+                updatingIncident.setSentiment(incident.getSentiment());
 
             incidentRepository.save(updatingIncident);
 
