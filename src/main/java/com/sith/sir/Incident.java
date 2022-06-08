@@ -16,10 +16,10 @@ public class Incident {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long id;
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate date;
 
-    @JsonFormat(pattern = "HH:mm")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
     private LocalTime time;
     private String location;
     private String incidentType;

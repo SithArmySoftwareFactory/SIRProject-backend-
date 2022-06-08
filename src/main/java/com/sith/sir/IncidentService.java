@@ -97,7 +97,7 @@ public class IncidentService {
             //need to add logic for patch
             if(incident.getDate() != null)
             updatingIncident.setDate(incident.getDate());
-
+            System.out.println(incident.getDate());
             if(incident.getTime() != null)
             updatingIncident.setTime(incident.getTime());
 
