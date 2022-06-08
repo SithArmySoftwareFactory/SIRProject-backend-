@@ -22,8 +22,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
 
-import static org.springframework.http.HttpMethod.GET;
-import static org.springframework.http.HttpMethod.POST;
+import static org.springframework.http.HttpMethod.*;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
 @Configuration
@@ -55,8 +54,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .antMatchers(GET, "/api/users/**")
                 .hasAnyAuthority("ROLE_SUPER_ADMIN", "ROLE_ADMIN")
+
                 .antMatchers(GET, "/api/incident/**")
                 .hasAnyAuthority("ROLE_SUPER_ADMIN")
+
+                .antMatchers(PATCH, "/api/incident/**")
+                .hasAnyAuthority("ROLE_SUPER_ADMIN", "ROLE_ADMIN")
+
+                .antMatchers(PUT, "/api/incident/**")
+                .hasAnyAuthority("ROLE_SUPER_ADMIN", "ROLE_ADMIN")
+                .antMatchers(POST, "/api/incident/**")
+                .hasAnyAuthority("ROLE_SUPER_ADMIN", "ROLE_ADMIN")
+
                 .and().sessionManagement()
                 .sessionCreationPolicy(STATELESS).and()
         .addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
