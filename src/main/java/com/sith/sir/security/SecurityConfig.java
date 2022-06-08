@@ -64,7 +64,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(PUT, "/api/incident/**")
                 .hasAnyAuthority("ROLE_SUPER_ADMIN", "ROLE_ADMIN")
                 .antMatchers(POST, "/api/incident/**")
-                .hasAnyAuthority("ROLE_SUPER_ADMIN", "ROLE_ADMIN")
+                .permitAll()
+                //.hasAnyAuthority("ROLE_SUPER_ADMIN", "ROLE_ADMIN")
 
                 .and().sessionManagement()
                 .sessionCreationPolicy(STATELESS).and()

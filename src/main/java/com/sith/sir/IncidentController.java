@@ -41,7 +41,9 @@ public class IncidentController {
 //                        new com.twilio.type.PhoneNumber("+13072964041"),
 //                        "SIR Generated: " + incident.getEventType())
 //                .create();
+        System.out.println("Test");
         return incidentService.createASingleIncident(incident);
+
     }
 
     @PostMapping("/api/send")
