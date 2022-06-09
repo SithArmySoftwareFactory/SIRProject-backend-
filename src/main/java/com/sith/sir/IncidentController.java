@@ -35,12 +35,12 @@ public class IncidentController {
 
     @PostMapping("/api/incident")
     public Incident createASingleIncidentWithPost(@RequestBody Incident incident) {
-//        Twilio.init("AC36495638afb137d0807184f2b37bbae3","9a1e998d4bc5df2984dad9e3cd22d2ba");
-//        Message message = Message.creator(
-//                        new com.twilio.type.PhoneNumber("+13185071317"),
-//                        new com.twilio.type.PhoneNumber("+13072964041"),
-//                        "SIR Generated: " + incident.getEventType())
-//                .create();
+        Twilio.init("AC36495638afb137d0807184f2b37bbae3","9a1e998d4bc5df2984dad9e3cd22d2ba");
+        Message message = Message.creator(
+                        new com.twilio.type.PhoneNumber("+13185071317"),
+                        new com.twilio.type.PhoneNumber("+13072964041"),
+                        "SIR Generated: " + incident.getEventType())
+                .create();
         return incidentService.createASingleIncident(incident);
     }
 
