@@ -77,7 +77,7 @@ public class IncidentService {
         } else {
             sendMail(incident);
             incidentRepository.save(incident);
-            return incident;
+            return incidentRepository.save(incident);
         }
     }
 
